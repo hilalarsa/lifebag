@@ -1,12 +1,12 @@
 <template>
-  <v-row class="justify-end">
+  <v-row justify="center">
     <v-dialog v-model="dialog" persistent max-width="400px">
       <template v-slot:activator="{ on }">
-        <v-btn text dark v-on="on">Login</v-btn>
+        <v-btn text dark v-on="on">Signup</v-btn>
       </template>
       <v-card>
         <v-card-title>
-          <span class="headline">Login</span>
+          <span class="headline">Signup</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -24,7 +24,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" text @click="handleLogin">Login</v-btn>
+          <v-btn color="blue darken-1" text @click="handleSignup">Signup</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -32,37 +32,34 @@
 </template>
 <script>
 	import jwt from 'jsonwebtoken'
-	import cookies from 'js-cookie'
-
 	export default {
-		name: 'login',
+		name: 'signup',
 		data: () => ({
-			// dialog: false,
+			dialog: false,
 			username: '',
 			password: '',
 		}),
 		methods: {
-			handleLogin: function() {
-				// this.dialog = false
+			handleSignup: function() {
+				this.dialog = false
 				console.log(this.username, this.password)
+
+				let token = jwt.sign(
+					{ token: this.username + this.password },
+					process.env.privateKey
+				)
 				const data = this.$axios({
-					method: 'GET',
-					url: `${process.env.apiUrl}/users?username=${this.username}`,
+					method: 'POST',
+					url: `${process.env.apiUrl}/users`,
+					data: {
+						username: this.username,
+						password: this.password,
+						role: 'user',
+						token: token,
+					},
 				})
 					.then(response => {
-						let { username, password, token } = response.data[0]
-
-						if (username == this.username && password == this.password) {
-							let verify = jwt.verify(token, process.env.privateKey)
-							if (verify.token) {
-								console.log('Login succes, redirecting...')
-								cookies.set('login', true, { expires: 7 })
-							} else {
-								console.log('JSON web token malformed')
-							}
-						} else {
-							console.log('username pass wrong')
-						}
+						console.log('success signup')
 					})
 					.catch(err => {
 						console.log(err)

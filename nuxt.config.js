@@ -24,6 +24,11 @@ module.exports = {
   /*
   ** Global CSS
   */
+  env: {
+    // apiUrl: process.env.NODE_ENV == 'development' ? 'http://api.findmyroom.sg' : null
+    apiUrl: 'http://localhost:3001',
+    privateKey: 'encryptedbanana'
+  },
   css: [
   ],
   /*
@@ -41,6 +46,8 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/axios',
+    'cookie-universal-nuxt'
   ],
   /*
   ** vuetify module configuration
@@ -70,7 +77,7 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
+    extend(config, ctx) {
     }
   }
 }

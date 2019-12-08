@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row class="justify-center">
     <v-dialog v-model="dialog" persistent max-width="400px">
       <template v-slot:activator="{ on }">
         <v-btn text dark v-on="on">Buy</v-btn>
@@ -12,20 +12,24 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                  <div>Cara pesan : </div>
-                  <div>1. Masukkan data </div>
-                  <div>2. Transfer </div>
-                  <div>3. Kirim bukti transfer </div>
-                  <div>4. Tunggu email konfirmasi </div>
+                <div>Cara pesan :</div>
+                <div>1. Masukkan data</div>
+                <div>2. Transfer</div>
+                <div>3. Kirim bukti transfer</div>
+                <div>4. Tunggu email konfirmasi</div>
               </v-col>
               <v-col cols="12">
                 <v-text-field v-model="username" label="Nama*" required></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field v-model="password" label="Alamat Lengkap*" type="password" required></v-text-field>
+                <v-text-field v-model="address" label="Alamat Lengkap*" required></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field v-model="password" label="Upload Bukti Transfer" type="password" required></v-text-field>
+                <v-file-input
+                  v-model="paymentProof"
+                  accept="image/*"
+                  label="Upload Bukti Transfer"
+                ></v-file-input>
               </v-col>
             </v-row>
           </v-container>
@@ -41,17 +45,45 @@
   </v-row>
 </template>
 <script>
-  export default {
-    name:"buy",
-    data: () => ({
-      dialog: false,
-    }),
-    methods: () => ({
-      handleBuy(){
-        this.dialog=false
-        // this.username
-        // this.password
-      }
-    })
-  }
+	import moment from 'moment'
+	export default {
+		name: 'buy',
+		props: ['product'],
+		data: () => ({
+			dialog: false,
+			username: '',
+			address: '',
+      paymentProof: null,
+      imageName:'',
+      imageFile:'',
+      imageUrl:'',
+		}),
+		methods: {
+			handleBuy: function() {
+				this.dialog = false
+				let { productName, price } = this.product
+				// console.log(moment())
+        console.log(this.paymentProof.name)
+        console.log(this.username, this.address)
+				const data = this.$axios({
+					method: 'POST',
+					url: `${process.env.apiUrl}/orders`,
+					data: {
+						productName,
+						price,
+						username: this.username,
+						address: this.address,
+						paymentProof: this.paymentProof.name,
+						date: moment().format("DDMMYYYY"),
+					},
+				})
+					.then(response => {
+						console.log('success signup')
+					})
+					.catch(err => {
+						console.log(err)
+					})
+			},
+		},
+	}
 </script>
