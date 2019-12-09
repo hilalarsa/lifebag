@@ -4,7 +4,7 @@
         <v-card class="mx-auto" max-width="100%" >
           <v-img :src="productData.image" height="500px"></v-img>
 
-          <v-card-title>{{ productData.productName }}</v-card-title>
+          <v-card-title>{{ productData.productName.charAt(0).toUpperCase() + productData.productName.substring(1) }}</v-card-title>
 
           <v-card-subtitle>{{ productData.price }} | {{ productData.material }} | {{ productData.size }}</v-card-subtitle>
 

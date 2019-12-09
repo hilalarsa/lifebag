@@ -15,7 +15,16 @@
                 <v-text-field v-model="username" label="Username*" required></v-text-field>
               </v-col>
               <v-col cols="12">
+                <v-text-field v-model="email" label="Email*" required></v-text-field>
+              </v-col>
+              <v-col cols="12">
                 <v-text-field v-model="password" label="Password*" type="password" required></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field v-model="name" label="Nama Lengkap*" required></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field v-model="address" label="Alamat Pengiriman Lengkap*" required></v-text-field>
               </v-col>
             </v-row>
           </v-container>
@@ -38,6 +47,9 @@
 			dialog: false,
 			username: '',
 			password: '',
+			email: '',
+			name: '',
+			address: '',
 		}),
 		methods: {
 			handleSignup: function() {
@@ -54,6 +66,9 @@
 					data: {
 						username: this.username,
 						password: this.password,
+						name: this.name,
+						email: this.email,
+						address: this.address,
 						role: 'user',
 						token: token,
 					},

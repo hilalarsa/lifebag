@@ -45,23 +45,25 @@
             </svg>
           </h1>
           <div class="subheading mb-4 text-center">Beli tas daur ulang? Disini tempatnya!</div>
+          <div class="title mb-4 text-center">Setiap pembelian 1 pcs tas, kami akan menanam 1 buah pohon!</div>
           <v-btn class="mt-12" color="blue lighten-2" light large @click="handleList">Cari disini</v-btn>
         </v-layout>
       </v-parallax>
     </section>
-
+<div class="text-center display-1 my-4">Katalog</div>
     <section>
       <v-container grid-list-xl>
         <v-row dense>
           <v-col v-for="card in productData" :key="card.index" :cols="4" class="pointer">
-            <v-card class="align-left" @click="handleViewDetail(card.id)">
+            <v-card class="align-left" >
               <v-img
                 :src="card.image"
                 class="white--text align-end"
                 gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                 height="200px"
+                @click="handleViewDetail(card.id)"
               >
-                <v-card-title v-text="card.productName"></v-card-title>
+                <v-card-title v-text="card.productName.charAt(0).toUpperCase() + card.productName.substring(1)"></v-card-title>
                 <v-card-subtitle v-text="'Rp. '+ card.price" class="subtitle"></v-card-subtitle>
               </v-img>
 

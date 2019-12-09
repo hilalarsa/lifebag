@@ -37,7 +37,7 @@
 	export default {
 		name: 'login',
 		data: () => ({
-			// dialog: false,
+			dialog: false,
 			username: '',
 			password: '',
 		}),
@@ -50,13 +50,21 @@
 					url: `${process.env.apiUrl}/users?username=${this.username}`,
 				})
 					.then(response => {
-						let { username, password, token } = response.data[0]
+						let { username, password, token, address, email, role, name } = response.data[0]
 
 						if (username == this.username && password == this.password) {
 							let verify = jwt.verify(token, process.env.privateKey)
 							if (verify.token) {
 								console.log('Login succes, redirecting...')
-								cookies.set('login', true, { expires: 7 })
+								cookies.set('login', {
+									username,
+									token,
+									address,
+									email,
+									role,
+									name
+								}, { expires: 7 })
+								this.$router.push('/')
 							} else {
 								console.log('JSON web token malformed')
 							}

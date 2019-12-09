@@ -556,10 +556,31 @@
       "username": "admin",
       "password": "admin",
       "name": "Hilal",
+      "email": "hilalarsa@gmail.com",
       "address": "Jalan Remujung 999 - Malang",
       "role": "admin",
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6ImFkbWluYWRtaW4iLCJpYXQiOjE1NzU3OTUzODl9.2awzFYVBf76KG9XzJR8F6k9tDoQgHj5G-gVjkDsi4lM",
       "id": 1
+    },
+    {
+      "username": "test",
+      "password": "123",
+      "name": "test123",
+      "email": "test@gmail.com",
+      "address": "malang",
+      "role": "user",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6InRlc3QxMjMiLCJpYXQiOjE1NzU4NzAzOTl9.tanBDaIeVJvoLAm-CMlhCebyPVgZ1I_0QQGWXBN-5es",
+      "id": 2
+    },
+    {
+      "username": "anita",
+      "password": "123456",
+      "name": "Anita Sari",
+      "email": "anita@gmail.com",
+      "address": "Senggani Malang",
+      "role": "user",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6ImFuaXRhMTIzNDU2IiwiaWF0IjoxNTc1ODg0MzQ5fQ.HU1CRMfQl-AXKJ_GRm0mH8d3XrhrReREw_Z5-zl4eFw",
+      "id": 3
     }
   ],
   "orders": [
@@ -567,16 +588,22 @@
       "id": 0,
       "productName": "Lorem",
       "price": "95,220",
-      "username": "",
-      "address": "",
+      "username": "hilal",
+      "name": "hallo",
+      "email": "test@gmail.com",
+      "address": "bekasi",
+      "postal": "65141",
       "paymentProof": "img",
       "date": "2019-11-10"
     },
     {
       "productName": "veniam",
       "price": "53,927",
-      "username": "",
-      "address": "",
+      "username": "hilal",
+      "name": "haha",
+      "email": "test@gmail.com",
+      "address": "Malang",
+      "postal": "65141",
       "paymentProof": "45361445_2218153614870447_5690836138260955136_n.jpg",
       "date": "2019-12-08T21:14:50.694Z",
       "id": 1
@@ -585,10 +612,25 @@
       "productName": "veniam",
       "price": "53,927",
       "username": "hilal",
+      "name": "hilal",
+      "email": "test@gmail.com",
       "address": "jalan remujjung",
+      "postal": "65141",
       "paymentProof": "45361445_2218153614870447_5690836138260955136_n.jpg",
       "date": "09122019",
       "id": 2
+    },
+    {
+      "productName": "laborum",
+      "price": "74,326",
+      "username": "hilal",
+      "name": "Hilal",
+      "address": "Jalan remujung 59 Malang",
+      "postal": "65141",
+      "email": "hilalarsa@gmail.com",
+      "paymentProof": "45361445_2218153614870447_5690836138260955136_n.jpg",
+      "date": "09122019",
+      "id": 3
     }
   ]
 }

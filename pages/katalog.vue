@@ -10,7 +10,7 @@
               </v-card-text>
               <hr />
               <v-card-title primary-title class="layout justify-center">
-                <div class="headline text-center">{{ item.productName }}</div>
+                <div class="headline text-center">{{ item.productName.charAt(0).toUpperCase() + item.productName.substring(1) }}</div>
               </v-card-title>
               <v-card-text primary-title class="layout">
                 <div>Rp. {{ item.price }} | {{ item.material }} | {{ item.size }}</div>

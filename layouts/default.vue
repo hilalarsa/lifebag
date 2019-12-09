@@ -41,24 +41,8 @@
             </template>
 
             <template v-else-if="!isLoggedIn">
-              <v-menu left bottom>
-                <template>
-                  <v-btn icon>
-                    <v-icon>mdi-dots-vertical</v-icon>
-                  </v-btn>
-                </template>
-
-                <v-list>
-                  <v-list-item>
-                    <v-list-item-title>
-                      <login></login>
-                    </v-list-item-title>/
-                    <v-list-item-title>
-                      <signup></signup>
-                    </v-list-item-title>
-                  </v-list-item>
-                </v-list>
-              </v-menu>
+              <login></login>
+              <signup></signup>
             </template>
           </v-app-bar>
           <v-sheet id="scrolling-techniques-5" class="overflow-y-auto" max-height="600">
@@ -83,7 +67,6 @@
 <script>
 	import login from '~/components/login'
 	import signup from '~/components/signup'
-	import logout from '~/components/logout'
 
 	import cookies from 'js-cookie'
 
@@ -94,21 +77,22 @@
 		},
 		data() {
 			return {
-				isLoggedIn: cookies.get('login'),
+				isLoggedIn: cookies.get('login') ? true : false
 			}
 		},
 		methods: {
 			handleLogout: () => {
-        console.log('logging out')
+				console.log('logging out')
         cookies.remove('login')
-        this.$router.push('/')
+        window.location.href = "/"
+				// this.$route.push('/')
 			},
-    },
+		},
 	}
 </script>
 <style lang="scss" scoped>
 .main {
-	margin-top: 200px;
+	margin-top: 128px;
 }
 .pointer {
 	cursor: pointer;
